@@ -1,3 +1,5 @@
+package org.codeanon.aoc.platform
+
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.default
@@ -10,10 +12,12 @@ enum class ChallengeStage {
 }
 
 class Runner<C : Challenge>(private val challenge: C) {
-    fun run(args: Array<String>) = runBlocking<Unit> {
+    fun run(args: Array<String>) = runBlocking {
         val parser = ArgParser("Advent of Code 2021")
         val data by parser.argument(ArgType.String, fullName = "Data", description = "Data file provided by the challenge")
-        val mode by parser.option(ArgType.Choice<ChallengeStage>(), shortName = "c", fullName = "challenge").default(ChallengeStage.Stage1)
+        val mode by parser.option(ArgType.Choice<ChallengeStage>(), shortName = "c", fullName = "challenge").default(
+            ChallengeStage.Stage1
+        )
 
         parser.parse(args)
 

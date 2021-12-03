@@ -1,3 +1,6 @@
+import org.codeanon.aoc.platform.Challenge
+import org.codeanon.aoc.platform.Runner
+
 class Day01: Challenge {
     override fun run01(data: String) {
         val numIncreasing =
@@ -16,6 +19,7 @@ class Day01: Challenge {
     override fun run02(data: String) {
         val numIncreasing =
             data.split(Regex("\\s+"))
+                .asSequence()
                 .filter { it.isNotEmpty() }
                 .map { it.toInt() }
                 .windowed(3)
