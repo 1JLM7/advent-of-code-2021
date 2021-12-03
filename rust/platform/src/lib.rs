@@ -46,17 +46,7 @@ struct Options {
 
 #[tracing::instrument]
 pub fn run<C: 'static + Debug + Challenge + Send>(challenge: C) -> anyhow::Result<()> {
-    use tracing_subscriber::prelude::*;
-    tracing_subscriber::registry()
-        .with(
-            tracing_subscriber::EnvFilter::try_from_default_env()
-                .or_else(|_| tracing_subscriber::EnvFilter::try_new("info"))
-                .unwrap(),
-        )
-        .with(tracing_subscriber::fmt::layer().with_target(false));
-    tracing_log::LogTracer::init().unwrap_or_else(|err| {
-        tracing::error!("Couldn't set up logger: {}", err);
-    });
+    tracing_subscriber::fmt::init();
 
     let rt = Builder::new_current_thread()
         .thread_name("aoc-platform-thread")
