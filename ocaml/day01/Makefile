@@ -1,0 +1,2 @@
+main:
+	ocaml day*.ml
