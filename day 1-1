@@ -1,0 +1,17 @@
+count=0
+numbers = []
+with open("input.txt") as f :
+    n1=int(f.readline())    
+    n2=int(f.readline())
+    n3=int(f.readline())
+    total=n1+n2+n3
+    while n3!=0:
+        n1=n2  
+        n2=n3
+        n3=int(f.readline())
+        somme=n1+n2+n3
+        if total<somme:
+            count+=1
+        total=somme
+        
+print(count)
